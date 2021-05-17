@@ -296,7 +296,119 @@ E higher(E e)
 
 ## 7. Streams
 
-## 8. String & Regex
+## 8. Strings & Regex
+### String methodes
+[Java String API](https://docs.oracle.com/javase/7/docs/api/java/lang/String.html) <br>
+**String methodes**
+```java
+String name = "Niels";
+name.length(); // 5
+name.charAt(1); // "i"
+name.equals("YEET"); // false
+name.equalsIgnoreCase("NIELS"); // true
+// kopieert  de  karakters  van  een  bepaaldeString vanaf positie start t.e.m. laatste-1, in de array naar vanaf index vanafpos
+name.getChars(start, laatste, destination, vanafpos)
+int compareTo()
+boolean regionMatches()
+boolean startsWith("string")
+boolean endsWith("string")
+int indexOf('a');
+int lastIndexOf('a')
+String substring(start)
+String substring(start, eind)
+String concat("string")
+String replace(oldChar, newChar)
+String toUpperCase()
+String toLowerCase()
+String trim()
+char[] toCharArray
+String valueOf(E)
+```
+### StringBuilder
+StringBuilder wordt gebruikt voor zogenaamde "dynamische strings". <br>
+[Java StringBuilder API](https://docs.oracle.com/javase/7/docs/api/java/lang/StringBuilder.html) <br>
+**StringBuilder methodes**
+```java
+int length() // aantal karakters van StringBuilder
+int capacity() // Capaciteit van StringBuilder
+void setLength(int newLength) // Verhoogt/verlaagt de lengte van de StringBuilder
+void ensureCapacity(int minimumCapacity) // Garandeert dat de StringBuilder een minimumcapaciteit heeft
+
+// Methodes voor karakterbewerkingen
+char charAt(int index) // returnt character op index
+void setCharAt(int index, char ch) // Zet ch op index
+void getChars(srcBegin, srcEnd, char[] dest, int dstBegin) // characters worden gekopieerd van deze sequentie naar de bestemmingskarakter array dst.
+StringBuilder reverse() // Keert inhoud van StringBuilder om
+
+// Append methodes, tussenvoeg- en verwijdermethodes
+StringBuilder append(E) // voeg E toe aan StringBuilder
+StringBuilder insert(offset, E) // voeg E toe aan StringBuilder op gegeven offset
+StringBuilder delete(int start, int end) // Verwijder de characters in een substring in de StringBuilder
+StringBuilder deleteCharAt(int index) // Verwijder een char op index
+```
+
+### Tokenizing Strings
+1. String split methode
+```java
+String zin = "Wow heb je echt al tot hier gelezen?"
+zin.split(" "); // ["Wow", "heb", "je", "echt", "al", "tot", "hier", "gelezen?"]
+```
+2. Klasse StringTokenizer
+```java
+String zin = "Wat een legend"
+StringTokenizer tokens = new StringTokenizer(zin);
+while(tokens.hasMoreTokens()){
+    System.out.println(tokens.nextToken());   
+}
+```
+
+### Regex
+#### Reguliere expressies
+| Expressie | Matches                                          |
+|:---------:|--------------------------------------------------|
+| \d        | elk cijfer                                       |
+| \W        | elke letter, cijfer of underscore                |
+| \s        | elke witruimte                                   |
+| .         | elk karakter, maar geen newline                  |
+| \.        | een punt                                         |
+| \D        | elk niet cijfer                                  |
+| \W        | elke niet-letter, niet-cijfer en geen underscore |
+| \S        | elke niet wit-ruimte                             |
+| [abc]     | opsomming, a of b of c                           |
+| [^...]    | alles wat niet tussen de haakjes staat           |
+| [A-Z]     | A t.e.m. Z                                       |
+| re*       | 0 of meer                                        |
+| re+       | 1 of meer                                        |
+| re?       | 0 of 1                                           |
+| re{n}     | precies n voorkomens                             |
+| re{n,m}   | tussen n en m voorkomens                         |
+| a \| b    | of => a of b                                     |
+| (re)      | groeperen van reguliere expressies               |
+| ^         | begin                                            |
+| $         | eind                                             |
+
+#### Stringmethodes regex
+```java
+String replaceAll(String regex, String replacement)
+String replaceFirst(String regex, String replacement)
+String[] split(String regex)
+```
+
+#### Klasse Pattern en klasse Matcher
+```java
+String zin = "Doneer mij een RTX 3070!"
+Pattern p = Pattern.compile("[\\d]");
+Matcher m = p.matcher(zin);
+
+int count = 0;
+while(m.find()){
+    System.out.println("Match " + ++count);
+    System.out.println(m.group());
+}
+```
+
+
+
 
 ## 9. Bestandsverwerking
 Om een tekstbestand te kunnen lezen en/of schrijven moet je 3 stappen doorlopen:
