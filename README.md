@@ -297,4 +297,125 @@ E higher(E e)
 ## 8. String & Regex
 
 ## 9. Bestandsverwerking
+Om een tekstbestand te kunnen lezen en/of schrijven moet je 3 stappen doorlopen:
+1. Openen bestand om te lezen of te schrijven
+2. Bewerkingen uitvoeren
+3. Sluiten van het geopende bestand
+### Tekstbestanden
+#### Schrijven naar een tekstbestand
+Schrijven naar een tekstbestand maakt gebruik van een `Formatter`
+```java
+// Open bestand om te schrijven
+try{
+    output = new Formatter(Files.newOutputStream(Paths.get("src\\tekstbestand\\clients.txt"), StandardOpenOption.APPEND));
+} catch (InvalidPathException ie){
+    System.err.println("Error finding file.");
+    System.exit(1);
+} catch (IOException ex){
+    System.err.println("Error creating file.")
+    System.exit(1);
+}
 
+// Schrijven naar file
+try{
+    output.format("%d %s %s %.2f%n", record.getAccount(), record.getFirstName(), record.getLastName(), record.getBalance());    
+} catch (FormatterClosedException formatterClosedException){
+    System.err.println("Error writing to file.")
+}
+```
+#### Lezen van een tekstbestand
+Lezen van een tekstbestand maakt gebruik van `Scanner`
+```java
+// Open bestand om te lezen
+try{
+    input = new Scanner(Files.newInputStream(Paths.get("src\\tekstbestand\\clients.txt")));
+} catch (InvalidPathException ie){
+    System.err.println("Error finding file.");
+    System.exit(1);
+} catch (IOException ex){
+    System.err.println("Error opening file.");
+    System.exit(1);
+}
+
+// Lezen van file
+try{
+    while(input.hasNext()){
+        lijst.add(new AccountRecord(input.nextInt(), input.next(), input.nextDouble()));
+    } catch (InputMismatchException elementException){
+        // Indien de organisatie/type gegevens niet overeenstemmen.
+        System.err.println("File improperly formed.");
+        input.close();
+        System.exit(1);  
+    } catch (NoSuchElementException elementException){
+        // Er ontbreken elementen.
+        System.err.println("Element missing");
+        input.close();
+        System.exit(1);
+    } catch (IllegalStateException stateException){
+        // In geval van lezen terwijl Scanner reeds gesloten is.
+        System.err.println("Error reading from file.");
+        System.exit(1);
+    }
+}
+```
+### Serialisatie
+#### Schrijven naar een binair bestand - serialisatie
+Objecten van klassen die de interface Serializable implementeren, kunnen geserialiseerd worden via `ObjectOutputStream`
+```java
+// Open bestand om te schrijven
+try{
+    output = new ObjectOutputStream(Files.newOutputStream(Paths.get("src\\serialisatie\\accounts.ser")));
+} catch (InvalidPathException ie){
+    // Het opgegeven pad klopt niet.
+    System.err.println("Error finding file.");
+    System.exit(1);
+} catch (IOException ex){
+    // In geval je geen schrijfrechten hebt voor de file. De file wordt niet gevonden of kan niet gecreëerd worden.
+    System.err.println("Error opening file.");
+    System.exit(1);
+}
+
+// Serialiseren
+try{
+    output.writeObject(record); // via writeObject wordt het record geserialiseerd.
+} catch (IOException ex){
+    System.err.println("Error writing to file.")
+}
+```
+
+#### Lezen van een binair bestand - deserialisatie
+Objecten van klassen die de interface Serializable implementeren, kunnen gedeserialiseerd worden via `ObjectInputStream`
+```java
+// Open bestand om te lezen
+try{
+    input = new ObjectInputStream(Files.newInputStream(Paths.get("src\\serialisatie\\accounts.ser")));
+} catch (InvalidPathException ie){
+    // Het opgegeven pad klopt niet.
+    System.err.println("Error finding file.");    
+    System.exit(1);
+} catch (IOException io){
+    // De file wordt niet gevonden.
+    System.err.println("Error opening file.");
+    System.exit(1);
+}
+
+// Deserialiseren
+try {
+    while (true) {
+        AccountRecordrecord = (AccountRecord) input.readObject(); // Downcasting
+        lijst.add(record);
+    }
+} catch (EOFException e) {
+    // Bij het bereiken van het einde van het bestand wordt een EOFException gegooid.
+} catch (ClassNotFoundException ex) {
+    // Indien iets fout loopt bij het downcasten.
+    System.err.print("Ongeldige objectstream");
+    System.exit(1);
+} catch (IOException e) {
+    // De file wordt niet gevonden.
+    System.err.println("Error reading file.");
+    System.exit(1);
+}
+
+return lijst;
+```
