@@ -146,6 +146,152 @@ public class EmailNotUniqueException extends Exception{
 
 ## 6. Collecties
 
+### Collection\<E\>
+Deze interface vormt de basis, de root van het collection framework. Alle onderstaande interfaces stammen af van deze interface.
+````java
+// Methodes collection
+int size()
+boolean isEmpty()
+boolean add(E element)
+boolean remove(Object element)
+Iterator<E> iterator()
+
+// Bulk methodes
+boolean containsAll(Collection<?> c)
+boolean addAll(Collection<?> c)
+boolean removeAll(Collection<?> c)
+boolean retainAll(Collection<?> c)
+void clear()
+````
+
+### List\<E\>
++ geordende collection
++ elk element heeft een index
++ dubbels ✔️
+````java
+// Methodes List
+E get(int index)
+int indexOf(Object o)
+int lastIndexOf(Object o)
+E remove(int index)
+E set(int index, E element)
+
+List<E> subList(int fromIndex, int toIndex) // subList maken van list
+void sort(Comparator<? super E> c)          // array sorteren
+<T> T[] toArray(T[] a)                      // van een list naar een array
+````
+Bij List<E> kan je gebruik maken van ListIterator om over de elementen van de List te itereren.
+1. Itereer in twee richtingen
+2. Elementen toevoegen, verwijderen, wijzigen
+```java
+ListIterator<E> listIterator()
+ListIterator<E> listIterator(int index)     // iterator die start op de aangegeven index
+        
+void add(E e)
+boolean hasNext() && boolean hasPrevious()
+E next() & E previous()
+int nextIndex() & int previousIndex()
+void remove()
+void set(E e)
+```
+
+### ArrayList\<E\>
+**Voorkeur**: veel opzoekingen <br>
+(😀) Resizeable array implementatie <br>
+(😀) Constante toegangstijd voor elk element => random access. <br>
+(👿) Invoegen/verwijderen element(en) => veel verschuivingen.
+```java
+ArrayList(int initialCapacity)
+void trimToSize()
+void ensureCapacity(int minCapacity)
+```
+
+### LinkedList\<E\>
+**Voorkeur**: veel invoegen/verwijderen van elementen <br>
+(😀) Double-linked list (referentie naar voorganger en naar zijn opvolger) <br>
+(😀) Elementen worden niet verschoven bij het toevoegen van een element(en). <br>
+(😀) Referenties naar voorgangers/opvolger kunnen eenvoudig aangepast worden. <br>
+(👿) Sequentiële toegang => starten vanaf eerste element (trager dan ArrayList).
+```java
+ArrayList(int initialCapacity)
+void trimToSize()
+void ensureCapacity(int minCapacity)
+```
+
+### Queue\<E\>
+Een queue wordt typisch gebruikt om elementen bij te houden alvorens ze te verwerken. Een queue is een FIFO structuur. <br>
+(👿) Elementen in queue zijn niet te benaderen via hun positie.
+
+```java
+// retourneer speciale waarden
+boolean offer(E e)
+E peek()
+E poll()
+
+// retourneer exceptions
+boolean add(E e)
+E element()
+E remove()
+```
+
+### Deque\<E\>
+(😀) Double ended queue (toevoegen/verwijderen elementen kan vooraan alsook achteraan gebeuren). <br>
+(👿) Vaste grote
+
+```java
+void push(E e)
+E peek()
+E pop()
+```
+
+### ArrayDeque\<E\>
+(😀) Double ended queue (toevoegen/verwijderen elementen kan vooraan als ook achteraan gebeuren). <br>
+(😀) Variabele grote.
+```java
+void push(E e)
+E peek()
+E pop()
+```
+
+### Set\<E\>
+dubbels ❌ <br>
+(👿) Elementen niet toegankelijk via positie. <br>
+(👿) geen index.
+```java
+
+```
+
+### HashSet\<E\>
+Een concrete implementatie van Set<E> die een hashtabel als onderliggende structuur heeft. Elementen zijn niet geordend.
+Hashcode van een object wordt gebruikt als index in een tabel. <br>
+(😀) Elementen enorm snel te vinden. <br>
+(😀) Verwijderen/toevoegen van elementen heel performant. <br>
+(👿) Itereren over elementen minder performant, random volgorde bij itereren.
+```java
+
+```
+
+### SortedSet\<E\>
+Een set met een ordening van de elementen. Natuurlijke en totale ordening mogelijk. <br>
+(😀) Itereren over elementen is voorspelbaar (door de sortering) <br>
+```java
+E first()
+E last()
+SortedSet<E> subset(E fromElement, E toElement)
+SortedSet<E> haedset(E toElement)
+SortedSet<E> tailset(E fromElement)
+```
+
+### NavigableSet\<E\>
+Een NavigableSet heeft een extra notie van nabijheid.<br>
+```java
+E floor(E e)
+E lower(E e)
+E ceiling(E e)
+E higher(E e)
+```
+
+
 ## 7. Streams
 
 ## 8. String & Regex
