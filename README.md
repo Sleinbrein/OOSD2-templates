@@ -53,7 +53,8 @@ HelloWorldMethodReference::printGreeting
 public class HelloWorldMethodReference {
     @FunctionalInterface
     interface HelloWorld {
-    public void greetSomeone(String someone);
+        void greetSomeone(String someone);
+    }
  }
  
  public void sayHello() {
@@ -76,7 +77,71 @@ public class HelloWorldMethodReference {
 
 
 ## 4. Exception handling
+Een exception is een uitzonderlijke gebeurtenis, die kan optreden bij het uitvoeren van een applicatie en die de normale voortgang van de applicatie onderbreekt.
+Via exception handling kan die uitzonderlijke gebeurtenis opgevangen worden. Zo programmeren we 'robuuste' applicaties.
 
+### Exception object gooien
+Gebruik het `throw` statement om een exceptie te gooien. Dit statement verwacht 1 argument: een object dat gegooid kan worden.
+```java
+// setter gooit IllegalArgumentException bij foutieve name input
+public void setName(String name){
+    if(name.isEmpty() || name == null){
+        throw new IllegalArgumentException("Name can not be empty.");    
+    }    
+}
+```
+
+### Opvangen en afhandelen van exceptions
+Een exception kan enkel afgehandeld worden indien ze optreedt binnen een `try` blok. Met `catch` vangen we de exceptie op. We maken dus gebruik van een try/catch blok.
+
+**try block**: identificeert een blok code waarin een exception kan optreden.<br>
+**catch block**: identificeert een blok code, de exception handler, die een specifieke exception kan afhandelen.<br>
+**finally block**: wordt altijd uitgevoerd, ook al treedt er een onverwachte exception op.
+```java
+try{
+    // code waarin exception kan optreden
+}catch(IllegalArgumentException ie){
+    // afhandelen exception    
+}
+```
+
+```java
+try{
+    // code waarin exception kan optreden
+}catch(IOException | SQLException ex){
+    // afhandelen exceptions 
+}
+```
+```java
+try{
+    // code waarin exception kan optreden
+}catch(IllegalArgumentException ie){
+    // afhandelen exception    
+}catch(IOException ioe){
+    // afhandelen exception    
+}finally{
+    // code wordt altijd uitgevoerd
+}
+```
+
+### Soorten exceptions
+| Exception                      | Beschrijving |
+|--------------------------------|--------------|
+| IllegalArgumentException       |              |
+| NullPointerException           |              |
+| ArrayIndexOutOfBoundsException |              |
+| IOException                    |              |
+| NumberFormatException          |              |
+
+### Custom Exception klasse
+Het is mogelijk om je eigen exception klassen te programmeren. Een eigen Exception klasse zal altijd erven van een bestaande Exception klasse. Het is de gewoonte om de naam van die nieuwe klasse te laten eindigen op Exception, vb: EmailException.
+```java
+public class EmailNotUniqueException extends Exception{
+    public EmailNotUniqueException(String message){
+        super(message);
+    }
+}
+```
 ## 5. GUI - JavaFX
 
 ## 6. Collecties
