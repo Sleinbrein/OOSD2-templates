@@ -1,5 +1,7 @@
 # OOSD2-templates
-Java templates die gebruikt kunnen worden voor de examens. Vaak voorkomende code kan zo gemakkelijk worden gekopieerd.
+Samenvatting Object-oriented Software Developement II (OOSDII). <br>
+**OPGELET**: Niet alle leerstof staat in deze "samenvatting". <br>
+`Feel free to contribute! 🤝🏻`
 
 ## 1. Overerving
 
