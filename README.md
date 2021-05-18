@@ -295,6 +295,68 @@ E higher(E e)
 
 
 ## 7. Streams
+Een stream is een opeenvolging van objecten die verschillende methoden ondersteunt die kunnen worden gepiped om het gewenste resultaat te verkrijgen. Streams wijzigen de databron niet. Ook is er geen geïndexeerde toegang. <br>
+Databron ➞ plaatsen van een Stream ➞ resultaat
+
+### Stream operaties
+```java
+.filter()
+.reduce()
+.forEach()
+.sorted()
+// Operaties op IntStreams, LongStreams, DoubleStreams
+.count()
+.min()
+.max()
+.sum()
+.average()
+.range(int startIncl, int endExcl)
+.rangeClosed(int startIncl, int endIncl)
+// Operaties op Streams
+.map()
+.collect()
+.findFirst()
+.distinct()
+.mapToDouble()
+```
+#### IntStream, LongStream, DoubleStream operaties
+```java
+int [] values = {69, 666, 420};
+IntStream.of(values). // vervolledig met IntStream operatie
+        
+// Data terug ophalen
+.getAsInt()
+.getAsDouble()
+.getAsBoolean()
+```
+
+#### Arrays en streams
+```java
+Integer[] values = {2, 9, 5, 0, 3, 7, 1, 4, 8, 6};
+Arrays.stream(values). // vervolledig met Stream operatie
+
+// Data terug ophalen
+.collect(Collectors.toList())
+.collect(Collectors.toMap())
+.collect(Collectors.toSet())
+```
+#### Lists en streams
+```java
+Employee[] employees = {
+    new Employee("Keanu", "Reeves", 6666),
+    new Employee("Rick", "Astley", 5000),    
+}
+List<Employee> list = Arrays.asList(employees);
+list.stream(). // vervolledig met Stream
+
+// Data terug ophalen
+.findFirst().get();
+.forEach(System.out::println);
+.reduce()
+.average().getAsDouble();
+...
+
+```
 
 ## 8. Strings & Regex
 ### String methodes
