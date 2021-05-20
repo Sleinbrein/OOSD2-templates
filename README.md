@@ -87,7 +87,7 @@ Gebruik het `throw` statement om een exceptie te gooien. Dit statement verwacht 
 ```java
 // setter gooit IllegalArgumentException bij foutieve name input
 public void setName(String name){
-    if(name.isEmpty() || name == null){
+    if(name == null || name.isEmpty()){
         throw new IllegalArgumentException("Name can not be empty.");    
     }    
 }
