@@ -129,11 +129,11 @@ try{
 ### Soorten exceptions
 | Exception                      | Beschrijving |
 |--------------------------------|--------------|
-| IllegalArgumentException       |              |
-| NullPointerException           |              |
-| ArrayIndexOutOfBoundsException |              |
-| IOException                    |              |
-| NumberFormatException          |              |
+| IllegalArgumentException       | Wanneer een methode een "Illegal Argument" passeert. vb: waneer er een percentage tussen 1 en 100 moet ingevoerd worden en er wordt 101 ingevoerd, dan treedt er een IllegalArgumentException op.       |
+| NullPointerException           | Wanneer een programma een object-reference gebruikt waarvan de waarde null is.            |
+| ArrayIndexOutOfBoundsException | Komt voor wanneer we een index van een array willen gebruiken die niet bestaat. vb: wanneer we in een array met een lengte van 2 iets op de 3de index willen plaatsen treedt er een ArrayIndexOutOfBoundsException op.           |
+| IOException                    | Treedt op wanneer de gebruiker data probeert in te voeren die niet passen. vb: wanneer er een Double wordt gevraagd een String invullen, dan treedt er een IOException op.          |
+| NumberFormatException          | Treedt op wanneer het niet mogelijk is om een String te converteren in een number.              |
 
 ### Custom Exception klasse
 Het is mogelijk om je eigen exception klassen te programmeren. Een eigen Exception klasse zal altijd erven van een bestaande Exception klasse. Het is de gewoonte om de naam van die nieuwe klasse te laten eindigen op Exception, vb: EmailException.
