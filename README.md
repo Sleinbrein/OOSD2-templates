@@ -154,6 +154,7 @@ Deze interface vormt de basis, de root van het collection framework. Alle onders
 // Methodes collection
 int size()
 boolean isEmpty()
+boolean contains(Object o)
 boolean add(E element)
 boolean remove(Object element)
 Iterator<E> iterator()
@@ -162,7 +163,7 @@ Iterator<E> iterator()
 boolean containsAll(Collection<?> c)
 boolean addAll(Collection<?> c)
 boolean removeAll(Collection<?> c)
-boolean retainAll(Collection<?> c)
+boolean retainAll(Collection<?> c) //de elementen verwijderen die niet in het meegegeven argument zitten.
 void clear()
 ````
 
@@ -226,9 +227,9 @@ Een queue wordt typisch gebruikt om elementen bij te houden alvorens ze te verwe
 
 ```java
 // retourneer speciale waarden
-boolean offer(E e)
-E peek()
-E poll()
+boolean offer(E e)  //element toevoegen
+E peek()    //top-element weergeven    
+E poll()    //top-element verwijderen
 
 // retourneer exceptions
 boolean add(E e)
@@ -241,7 +242,7 @@ E remove()
 (👿) Vaste grote
 
 ```java
-void push(E e)
+void push(E e) 
 E peek()
 E pop()
 ```
