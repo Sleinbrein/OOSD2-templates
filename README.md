@@ -58,12 +58,12 @@ public class HelloWorldMethodReference {
         void greetSomeone(String someone);
     }
  }
- 
+
  public void sayHello() {
     HelloWorld dutchGreeting = HelloWorldMethodReference::printGreeting;
     dutchGreeting.greetSomeone("Pete");
  }
- 
+
  private static void printGreeting(String name) {
     System.out.println("Hello " + name);
  }
@@ -111,7 +111,7 @@ try{
 try{
     // code waarin exception kan optreden
 }catch(IOException | SQLException ex){
-    // afhandelen exceptions 
+    // afhandelen exceptions
 }
 ```
 ```java
@@ -189,7 +189,7 @@ Bij List<E> kan je gebruik maken van ListIterator om over de elementen van de Li
 ```java
 ListIterator<E> listIterator()
 ListIterator<E> listIterator(int index)     // iterator die start op de aangegeven index
-        
+
 void add(E e)
 boolean hasNext() && boolean hasPrevious()
 E next() & E previous()
@@ -242,7 +242,7 @@ E remove()
 (👿) Vaste grote
 
 ```java
-void push(E e) 
+void push(E e)
 E peek()
 E pop()
 ```
@@ -324,7 +324,7 @@ Databron ➞ plaatsen van een Stream ➞ resultaat
 ```java
 int [] values = {69, 666, 420};
 IntStream.of(values). // vervolledig met IntStream operatie
-        
+
 // Data terug ophalen
 .getAsInt()
 .getAsDouble()
@@ -430,7 +430,7 @@ while(tokens.hasMoreTokens()){
 | Expressie | Matches                                          |
 |:---------:|--------------------------------------------------|
 | \d        | elk cijfer                                       |
-| \W        | elke letter, cijfer of underscore                |
+| \w        | elke letter, cijfer of underscore                |
 | \s        | elke witruimte                                   |
 | .         | elk karakter, maar geen newline                  |
 | \.        | een punt                                         |
